@@ -1,0 +1,99 @@
+@import url("/reset.css");
+
+:root {
+    --gray: #A6A6A6; /* gray */
+    --dark-gray: #5c5b5b88; /* dark-gray */
+    --yellow: #FFC402; /* 1-ball yellow */
+    --orange: #EF5020; /* 5-ball orange */
+}
+
+@font-face {
+    font-family: 'DonGraffiti';
+    src: url('/fonts/DonGraffiti.otf'); 
+    font-weight: bold; 
+    font-style: normal; 
+}
+
+body {
+    font-family: 'Copperplate Gothic', 'Calibri', 'sans-serif';
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--gray);
+    color: black;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background-color: var(--dark-gray);
+    font-family: 'DonGraffiti', 'Copperplate Gothic', sans-serif;
+    font-size: 40px;
+    color: black;
+    min-height: 15dvh;
+}
+
+.image-container {
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: var(--gray);
+    color: black;
+}
+
+.post-article {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    align-self: center;
+    padding: 0.25rem;
+    margin: 0.25rem;
+}
+
+.paragraph {
+    padding: 0.5rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 1rem;
+    min-height: 5dvh;
+    background-color: var(--dark-gray);
+    color: black;
+}
+
+/* unvisited link */
+a:link {
+  color: black;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: var(--yellow);
+}
+
+/* selected link */
+a:active {
+  color: var(--orange);
+}
+
