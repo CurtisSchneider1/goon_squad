@@ -5,6 +5,7 @@
     --dark-gray: #5c5b5b88; /* dark-gray */
     --yellow: #FFC402; /* 1-ball yellow */
     --orange: #EF5020; /* 5-ball orange */
+    --felt-blue: #004D9D; /*simonis felt blue */
 }
 
 @font-face {
@@ -79,7 +80,7 @@ body {
 
 /* unvisited link */
 a:link {
-  color: black;
+  color: var(--felt-blue);
 }
 
 /* visited link */
@@ -94,6 +95,6 @@ a:hover {
 
 /* selected link */
 a:active {
-  color: var(--orange);
+  color: var(--yellow);
 }
 
