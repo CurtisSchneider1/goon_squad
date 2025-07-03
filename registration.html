@@ -39,18 +39,50 @@
             </nav>
         </section>
     </header>
+    <main class="main">
+    <h1>Event Registration</h1>
+    <br>
+    <form action="/forms/registration.php" autocomplete="on">
+    <label for="fname">*First name:</label><br>
+        <input class="input" type="text" id="fname" name="fname" value="" size="30" maxlength="30" required autofocus><br>
+    <label for="lname">*Last name:</label><br>
+        <input type="text" id="lname" name="lname" value="" size="30" maxlength="30" required><br>
+    <label for="tname">Team Name (if team event):</label><br>
+        <input type="text" id="tname" name="tname" value="" size="50" maxlength="50"><br>
+    <label for="email">*Email Address:</label><br> 
+        <input type="email" id="email" name="email" value="" size="50" maxlength="50" required><br>
+    <label for="email2">*Email Address (confirm):</label><br>
+        <input type="email" id="email2" name="email2" value="" size="50" maxlength="50" required><br>
+    <label for="events">*Choose your event:</label><br>
+        <input list="events" name="events" size="75" maxlength="75">
+        <datalist id="events">
+            <option value="Test 8.1.25 @ Railyard">
+            <option value="Test2 8.5.25 @ Fox Den">
+            <option value="1 Hole 8.16.25 @ Railyard really long text for no reason">
+        </datalist>
+        <!--<select name="events" id="events">
+            <option value="Test 8.1.25 @ Railyard">8/1/25 @ Railyard</option>
+            <option value="Test2 8.5.25 @ Fox Den">8/5/25 @ Fox Den</option>
+            <option value="1 Hole 8.16.25 @ Railyard really long text for no reason">8/16/25 @ Railyard</option>
+        </select>-->
+        <br><br>
+    <label for="policy">*I have read and agree to the <div><a href="terms_of_use.html" target="_blank">Terms of Use</a>,
+        <a href="privacy_policy.html" target="_blank">Privacy Policy</a>, 
+        and <a href="liability.html" target="_blank">Event Liability and Waiver</a>.</label><br>
+    <label for="policycheck">
+        <input type="checkbox" id="policycheck" name="policycheck" required>
+    </label>
+    <br><br>
+    <input type="image" src="/images/submit.jpg" alt="Submit" width="150" height="64" value="Submit">
+    </form>
+    </p>
     Payment options
-    First name
-    Last name
-    email
-    email confirm
+
     time stamp
-    team name
     form validation
     append database file
-    21+ agreement
-    agree to policies (non-refundable, etc.)
-    
+    agree to non-refundable, etc.
+</main>
     <footer class="footer">
         <section>
             <nav aria-label="terms-of-use-navigation">
