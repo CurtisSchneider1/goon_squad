@@ -2,11 +2,12 @@
 
 :root {
     --gray: #A6A6A6; /* gray */
-    --dark-gray: #5c5b5c88; /* dark-gray */
+    --dark-gray: #5c5c5b88; /* dark-gray */
     --yellow: #FFC402; /* 1-ball yellow */
     --orange: #EF5020; /* 5-ball orange */
     --felt-blue: #004D9D; /* 2-ball blue */
-    --gs-pink: #FB7ED8 /* goon squad pink */
+    --gs-pink: #FB7ED8; /* goon squad pink */
+    --red: #F50112; /* 3-ball red */
 }
 
 @font-face {

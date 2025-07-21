@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Event Registration</title>
 </head>
 <body>
     <header class="header">
@@ -42,40 +42,54 @@
     <main class="main">
     <h1>Event Registration</h1>
     <br>
-    <form action="/forms/registration.php" autocomplete="on">
-    <label for="fname">*First name:</label><br>
+    <form onsubmit="return validateEmails()" action="/forms/registration.php" id="registrationForm" autocomplete="on">
+    <label for="fname">First name:*</label><br>
         <input class="input" type="text" id="fname" name="fname" value="" size="30" maxlength="30" required autofocus><br>
-    <label for="lname">*Last name:</label><br>
+    <label for="lname">Last name:*</label><br>
         <input type="text" id="lname" name="lname" value="" size="30" maxlength="30" required><br>
     <label for="tname">Team Name (if team event):</label><br>
         <input type="text" id="tname" name="tname" value="" size="50" maxlength="50"><br>
-    <label for="email">*Email Address:</label><br> 
+    <label for="email">Email Address:*</label><br> 
         <input type="email" id="email" name="email" value="" size="50" maxlength="50" required><br>
-    <label for="email2">*Email Address (confirm):</label><br>
-        <input type="email" id="email2" name="email2" value="" size="50" maxlength="50" required><br>
-    <label for="events">*Choose your event:</label><br>
-        <input list="events" name="events" size="75" maxlength="75">
+    <label for="confirmEmail">Confirm Email Address:*</label><br>
+        <input type="email" id="confirmEmail" name="confirmEmail" value="" size="50" maxlength="50" required><br>
+        <span id="feedback" style="color: #F50112;"></span>
+    <br><br>
+    <label for="events">Choose your event:*</label>
+    <br>
+        <input list="events" name="events" size="75" maxlength="75" required>
         <datalist id="events">
             <option value="Test 8.1.25 @ Railyard">
             <option value="Test2 8.5.25 @ Fox Den">
             <option value="1 Hole 8.16.25 @ Railyard really long text for no reason">
         </datalist>
+        <p>If you wish to participate in multiple events, please submit a separate registration for each.</p>
+        <!--This is for the default dropdown-->
         <!--<select name="events" id="events">
             <option value="Test 8.1.25 @ Railyard">8/1/25 @ Railyard</option>
             <option value="Test2 8.5.25 @ Fox Den">8/5/25 @ Fox Den</option>
             <option value="1 Hole 8.16.25 @ Railyard really long text for no reason">8/16/25 @ Railyard</option>
         </select>-->
-        <br><br>
+
     <label for="policy">*I have read and agree to the <div><a href="terms_of_use.html" target="_blank">Terms of Use</a>,
         <a href="privacy_policy.html" target="_blank">Privacy Policy</a>, 
-        and <a href="liability.html" target="_blank">Event Liability and Waiver</a>.</label><br>
+        and <a href="liability.html" target="_blank">Event Liability and Waiver</a>.
+    </label>
+    <br>
     <label for="policycheck">
         <input type="checkbox" id="policycheck" name="policycheck" required>
     </label>
-    <br><br>
-    <input type="image" src="/images/submit.jpg" alt="Submit" width="150" height="64" value="Submit">
+    <p id="error-message" style="color: var(--red);"></p>
+    <input type="image" src="/images/submit-active.jpg" alt="Submit" width="150" height="64" value="Submit" id="submitBtn">
     </form>
-    </p>
+    
+    <div id="confirmation" style="display: none; color: green;">
+          ✅ Thank you! Your registration has been submitted.
+    </div>
+
+    <p>* = Required Field</p>
+    <br>
+
     Payment options
 
     time stamp
@@ -108,5 +122,69 @@
     <footer class="footer">
         <section><p>2025 Goon Squad Billiards LLC &trade;</p></section>
     </footer>
+    
+<!-- Validates that the 2 email address fields match before submission.-->
+<script>
+        function validateEmails() {
+            const email = document.getElementById("email").value;
+            const confirmEmail = document.getElementById("confirmEmail").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (email !== confirmEmail) {
+                errorMessage.textContent = "Registration failed. Email addresses do not match.";
+                return false; // prevent form submission
+        }
+
+            errorMessage.textContent = ""; // clear error
+            return true; // allow form to submit
+    }
+</script>
+    
+<!-- Actively checks email validation as the user types -->
+<script>
+        const email = document.getElementById("email");
+        const confirmEmail = document.getElementById("confirmEmail");
+        const feedback = document.getElementById("feedback");
+        const submitBtn = document.getElementById("submitBtn");
+
+    function checkEmailsMatch() {
+        if (confirmEmail.value === email.value && email.value !== "") {
+            confirmEmail.style.borderColor = "green";
+        feedback.style.color = "green";
+        feedback.textContent = "✅ Emails match";
+        submitBtn.disabled = false;
+        //submitBtn.src="/images/submit-active.jpg";
+        } else {
+        confirmEmail.style.borderColor = "var(--red)";
+        feedback.style.color = "var(--red)";
+        feedback.textContent = "❌ Emails do not match";
+        submitBtn.disabled = true;
+        //submitBtn.src="/images/submit-disabled.jpg"
+    }
+  }
+
+    // Attach the listener to both fields
+    email.addEventListener("input", checkEmailsMatch);
+    confirmEmail.addEventListener("input", checkEmailsMatch);
+</script>
+
+
+<!-- To confirm form submission -->
+<script>
+  const form = document.getElementById("registrationForm");
+  const confirmation = document.getElementById("confirmation");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // stop default submit for now
+
+    // Show the confirmation message
+    confirmation.style.display = "block";
+
+    // Optionally wait a moment before submitting
+    setTimeout(() => {
+      form.submit(); // now submit the form for real
+    }, 1000); // delay in milliseconds (1 second)
+  });
+</script>
 </body>
 </html>
